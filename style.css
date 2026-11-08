@@ -1,0 +1,345 @@
+/* ============ Variabel warna & font ============ */
+:root {
+  --bg: #3b1750;
+  --bg-outer: #1f0b2e;
+  --yellow: #ffe94f;
+  --purple: #be97e8;
+  --purple-soft: #e8d9f3;
+  --dark: #3a1650;
+  --gray: #d9d9d9;
+  --font: "Poppins", system-ui, sans-serif;
+  --font-display: "Lilita One", "Poppins", sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg-outer);
+  color: var(--yellow);
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input { font-family: inherit; }
+button { cursor: pointer; border: none; background: none; }
+a { color: inherit; }
+
+/* ============ Kerangka aplikasi (lebar ala HP) ============ */
+.app {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.screen {
+  display: none;
+  flex-direction: column;
+  min-height: 100dvh;
+  padding: 28px 22px 40px;
+  animation: fade 0.3s ease;
+}
+.screen.active { display: flex; }
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ============ Elemen umum ============ */
+.title-shadow {
+  color: var(--dark);
+  text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* Kartu / blok dengan tepi kasar.
+   Latar digambar di ::before supaya hanya latar yang "bergerigi", teks tetap tajam. */
+.rough { position: relative; isolation: isolate; }
+.rough::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--card-bg, var(--yellow));
+  border-radius: 28px;
+  filter: url(#rough);
+}
+
+.btn {
+  background: var(--purple);
+  color: var(--dark);
+  font-weight: 800;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  padding: 12px 34px;
+  border-radius: 999px;
+  text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.35);
+  transition: transform 0.15s, filter 0.15s;
+}
+.btn:hover { filter: brightness(1.06); }
+.btn:active { transform: scale(0.97); }
+.btn-wide { width: 100%; max-width: 270px; }
+
+.back-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--purple);
+  display: grid;
+  place-items: center;
+  margin: -6px 0 0 -10px;
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+}
+.back-btn svg { width: 22px; height: 22px; }
+
+.center-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 4px;
+  padding-bottom: 30px;
+}
+
+/* ============ 1. Welcome ============ */
+.brand { display: flex; align-items: center; gap: 10px; padding-left: 6px; }
+.brand-logo {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--yellow);
+  border: 3px dashed var(--dark);
+  outline: 2px solid var(--yellow);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.brand-logo svg { width: 34px; height: 34px; }
+.brand-name { font-weight: 600; font-size: 1.15rem; line-height: 1.1; color: var(--yellow); }
+
+.welcome-text { text-align: center; margin-top: 56px; }
+.hero-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 2.6rem;
+  line-height: 1.1;
+  color: var(--yellow);
+  text-shadow: 3px 4px 0 rgba(0, 0, 0, 0.35);
+}
+.hero-sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.45rem;
+  margin-top: 4px;
+  text-shadow: 2px 3px 0 rgba(0, 0, 0, 0.35);
+}
+.hero-lead { font-size: 1.3rem; margin-top: 22px; font-weight: 400; }
+
+.role-list { display: flex; flex-direction: column; gap: 32px; margin-top: 22px; }
+
+.role-card {
+  --card-bg: var(--yellow);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 130px;
+  padding: 18px 22px 18px 14px;
+  text-align: left;
+  color: var(--dark);
+  transition: transform 0.15s;
+}
+.role-card.purple { --card-bg: var(--purple); }
+.role-card:hover { transform: translateY(-2px); }
+.role-card:active { transform: scale(0.98); }
+
+.role-avatar {
+  width: 86px;
+  height: 86px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--purple-soft);
+  border: 4px solid var(--dark);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
+}
+.role-avatar svg { width: 52px; height: 52px; }
+
+.role-text { display: flex; flex-direction: column; gap: 2px; padding-right: 36px; }
+.role-text strong { font-size: 1.55rem; font-weight: 700; line-height: 1.15; }
+.role-text small { font-size: 0.85rem; line-height: 1.5; text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3); }
+
+.role-arrow {
+  position: absolute;
+  right: 8px;
+  bottom: -10px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--purple-soft);
+  border: 3px solid var(--dark);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.35);
+}
+.role-arrow svg { width: 24px; height: 24px; }
+
+/* ============ 2 & 3. Login / Daftar ============ */
+.card {
+  --card-bg: var(--yellow);
+  margin: auto 0;
+  padding: 34px 24px 36px;
+  color: var(--dark);
+  text-align: center;
+}
+.card-title { font-size: 2.1rem; font-weight: 800; line-height: 1.2; }
+.card-note { margin-top: 14px; font-size: 0.95rem; }
+.link-strong { font-weight: 800; text-decoration: none; }
+
+.field { display: block; text-align: left; margin-top: 18px; }
+.field-label { display: block; font-size: 1.1rem; font-weight: 800; margin-bottom: 6px; padding-left: 4px; }
+.field input {
+  width: 100%;
+  background: var(--gray);
+  border: 2px solid transparent;
+  border-radius: 20px;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  color: var(--dark);
+  box-shadow: 4px 5px 6px rgba(80, 55, 0, 0.35);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.field input::placeholder { color: #8a7a99; }
+.field input:focus { border-color: var(--dark); }
+
+.forgot { margin-top: 14px; font-size: 0.95rem; }
+.forgot a { text-decoration: none; }
+.forgot a:hover { text-decoration: underline; }
+
+.form-error {
+  min-height: 1.3em;
+  margin: 10px 0 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #b3261e;
+}
+#screen-register .card .btn { margin-top: 6px; }
+
+/* ============ 4 & 5. OTP ============ */
+.mail-icon { width: 130px; height: 120px; margin-bottom: 14px; }
+.mail-icon svg { width: 100%; height: 100%; }
+
+.otp-title { font-size: 1.45rem; font-weight: 700; color: var(--yellow); }
+.otp-desc { font-size: 1.1rem; line-height: 1.35; margin-top: 14px; }
+.otp-desc strong { font-weight: 700; word-break: break-all; }
+
+.otp-boxes { display: flex; gap: 10px; justify-content: center; margin: 34px 0 10px; width: 100%; }
+.otp-boxes input {
+  width: 48px;
+  height: 76px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background: var(--gray);
+  text-align: center;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--dark);
+  box-shadow: 3px 5px 6px rgba(0, 0, 0, 0.35);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.otp-boxes input:focus { border-color: var(--yellow); }
+.otp-boxes.error input { border-color: #ff6b6b; animation: shake 0.3s; }
+
+@keyframes shake {
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.otp-error { min-height: 1.3em; font-size: 0.85rem; font-weight: 600; color: #ff8d8d; }
+.resend { font-size: 1.1rem; margin: 22px 0 40px; }
+.resend strong { font-weight: 700; }
+.resend button {
+  color: var(--yellow);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: underline;
+}
+
+/* ============ 6. Sukses ============ */
+.success-icon { position: relative; width: 200px; height: 190px; margin-bottom: 18px; }
+.success-ring {
+  position: absolute;
+  inset: 20px 25px 20px;
+  border-radius: 50%;
+  background: var(--yellow);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 0 -2px var(--purple);
+}
+.success-circle {
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--dark);
+  display: grid;
+  place-items: center;
+}
+.success-circle svg { width: 64px; height: 64px; }
+
+.spark { position: absolute; width: 22px; height: 22px; background: var(--yellow); clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
+.spark.s1 { left: 6px; top: 22px; }
+.spark.s2 { right: 4px; top: 0; width: 28px; height: 28px; }
+.dot { position: absolute; border-radius: 50%; }
+.dot.d1 { width: 9px; height: 9px; background: var(--purple); left: 0; top: 70px; }
+.dot.d2 { width: 9px; height: 9px; background: var(--purple); right: 40px; top: -6px; }
+.dot.d3 { width: 11px; height: 11px; background: var(--yellow); right: -2px; top: 70px; }
+
+.success-title { font-size: 1.5rem; font-weight: 700; color: var(--yellow); }
+.success-desc { font-size: 1.05rem; line-height: 1.6; margin-top: 4px; padding: 0 6px; }
+
+.btn-row { display: flex; gap: 16px; justify-content: center; margin-top: 70px; width: 100%; }
+.btn-row .btn { flex: 1; padding: 12px 10px; font-size: 1.05rem; }
+
+/* ============ Toast ============ */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 30px);
+  background: var(--yellow);
+  color: var(--dark);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 12px 20px;
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+  max-width: 90%;
+  text-align: center;
+  z-index: 10;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ============ Layar sangat kecil ============ */
+@media (max-width: 360px) {
+  .hero-title { font-size: 2.2rem; }
+  .otp-boxes input { width: 42px; height: 66px; }
+  .btn-row { flex-direction: column; }
+}

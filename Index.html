@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ah Master Wash Cafe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Filter SVG untuk efek tepi kasar pada kartu (dipakai di CSS: filter: url(#rough)) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" seed="4" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="9" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <div class="app">
+
+    <!-- ========== 1. WELCOME / PILIH PERAN ========== -->
+    <section class="screen active" id="screen-welcome">
+      <header class="brand">
+        <div class="brand-logo">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="24" cy="12" r="2.2" fill="none" stroke="#3a1650" stroke-width="2"/>
+            <circle cx="32" cy="9" r="2.2" fill="none" stroke="#3a1650" stroke-width="2"/>
+            <circle cx="40" cy="12" r="2.2" fill="none" stroke="#3a1650" stroke-width="2"/>
+            <path d="M16 22h30v14a13 13 0 0 1-13 13h-4a13 13 0 0 1-13-13z" fill="#fff" stroke="#3a1650" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M46 26h4a5 5 0 0 1 0 10h-4" fill="none" stroke="#3a1650" stroke-width="3"/>
+            <path d="M12 54h40" stroke="#3a1650" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="brand-name">Ah Master<br>Wash Cafe</span>
+      </header>
+
+      <div class="welcome-text">
+        <h1 class="hero-title">Selamat Datang</h1>
+        <h2 class="hero-sub">di Ah Master Wash Cafe</h2>
+        <p class="hero-lead">Masuk sebagai</p>
+      </div>
+
+      <div class="role-list">
+        <button class="role-card yellow rough" data-role="pelanggan" type="button">
+          <span class="role-avatar">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="22" r="11" fill="#fff" stroke="#3a1650" stroke-width="4"/>
+              <path d="M10 56c0-12 9-19 22-19s22 7 22 19z" fill="#fff" stroke="#3a1650" stroke-width="4" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="role-text">
+            <strong class="title-shadow">Pelanggan</strong>
+            <small>Pesan menu favoritmu sekarang!</small>
+          </span>
+          <span class="role-arrow">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="#3a1650" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+
+        <button class="role-card purple rough" data-role="kasir" type="button">
+          <span class="role-avatar">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <rect x="14" y="12" width="36" height="26" rx="3" fill="#fff" stroke="#3a1650" stroke-width="4"/>
+              <path d="M22 22h20M22 29h12" stroke="#3a1650" stroke-width="3" stroke-linecap="round"/>
+              <path d="M8 52l6-12h36l6 12z" fill="#fff" stroke="#3a1650" stroke-width="4" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="role-text">
+            <strong class="title-shadow">Kasir</strong>
+            <small>Kelola pesanan dan transaksi</small>
+          </span>
+          <span class="role-arrow">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="#3a1650" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ========== 2. LOGIN ========== -->
+    <section class="screen" id="screen-login">
+      <button class="back-btn" type="button" data-back aria-label="Kembali">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 5l-7 7 7 7" fill="none" stroke="#3a1650" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <form class="card rough" id="form-login" novalidate>
+        <h1 class="card-title title-shadow">Login</h1>
+        <p class="card-note">Tidak punya akun? <a href="#" class="link-strong title-shadow" data-go="register">Daftar</a></p>
+
+        <label class="field">
+          <span class="field-label title-shadow">Email/ No.Hp</span>
+          <input type="text" id="login-id" placeholder="nama@gmail.com/ 0838XXXXX" autocomplete="username">
+        </label>
+
+        <label class="field">
+          <span class="field-label title-shadow">Kata Sandi</span>
+          <input type="password" id="login-pass" placeholder="•••••••••" autocomplete="current-password">
+        </label>
+
+        <p class="forgot"><a href="#" id="forgot-link">Lupa Kata Sandi?</a></p>
+
+        <p class="form-error" id="login-error" role="alert"></p>
+        <button class="btn" type="submit">Submit</button>
+      </form>
+    </section>
+
+    <!-- ========== 3. DAFTAR AKUN ========== -->
+    <section class="screen" id="screen-register">
+      <button class="back-btn" type="button" data-back aria-label="Kembali">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 5l-7 7 7 7" fill="none" stroke="#3a1650" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <form class="card rough" id="form-register" novalidate>
+        <h1 class="card-title title-shadow">Daftar Akun</h1>
+
+        <label class="field">
+          <span class="field-label title-shadow">Nama</span>
+          <input type="text" id="reg-name" placeholder="Putri Asep" autocomplete="name">
+        </label>
+
+        <label class="field">
+          <span class="field-label title-shadow">Email/ No.HP</span>
+          <input type="text" id="reg-id" placeholder="nama@gmail.com/ 0838XXXXX" autocomplete="username">
+        </label>
+
+        <label class="field">
+          <span class="field-label title-shadow">Kata Sandi</span>
+          <input type="password" id="reg-pass" placeholder="•••••••••" autocomplete="new-password">
+        </label>
+
+        <label class="field">
+          <span class="field-label title-shadow">Konfirmasi Kata Sandi</span>
+          <input type="password" id="reg-pass2" placeholder="•••••••••" autocomplete="new-password">
+        </label>
+
+        <p class="form-error" id="reg-error" role="alert"></p>
+        <button class="btn" type="submit">Daftar</button>
+      </form>
+    </section>
+
+    <!-- ========== 4 & 5. VERIFIKASI OTP (nomor HP / email) ========== -->
+    <section class="screen" id="screen-otp">
+      <button class="back-btn" type="button" data-back aria-label="Kembali">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 5l-7 7 7 7" fill="none" stroke="#3a1650" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="center-block">
+        <div class="mail-icon">
+          <svg viewBox="0 0 120 110" aria-hidden="true">
+            <path d="M18 20l4 6M10 34l7 0M102 20l-4 6M110 34l-7 0" stroke="#ffe94f" stroke-width="3" stroke-linecap="round"/>
+            <path d="M22 24l-3-6 6 3-6 3zM100 24l3-6-6 3 6 3z" fill="#ffe94f"/>
+            <rect x="34" y="8" width="52" height="56" rx="4" fill="#f1e6fb" stroke="#3a1650" stroke-width="3"/>
+            <path d="M42 20h36M42 28h36" stroke="#be97e8" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="60" cy="46" r="10" fill="#ffe94f" stroke="#3a1650" stroke-width="3"/>
+            <path d="M55 46l4 4 7-8" fill="none" stroke="#3a1650" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 56l44 30 44-30v42a5 5 0 0 1-5 5H21a5 5 0 0 1-5-5z" fill="#be97e8" stroke="#3a1650" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M16 98l34-26M104 98L70 72" stroke="#3a1650" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <h1 class="otp-title">Masukkan Kode Verifikasi</h1>
+        <p class="otp-desc">Kode OTP telah dikirim ke <span id="otp-via">nomor</span><br><strong id="otp-target">0838xxxxxx</strong></p>
+
+        <div class="otp-boxes" id="otp-boxes">
+          <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 1" autocomplete="one-time-code">
+          <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2">
+          <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3">
+          <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+          <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+          <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+        </div>
+
+        <p class="otp-error" id="otp-error" role="alert"></p>
+        <p class="resend" id="resend">Kirim ulang dalam <strong id="timer">00:30</strong></p>
+
+        <button class="btn btn-wide" type="button" id="btn-verify">Verifikasi</button>
+      </div>
+    </section>
+
+    <!-- ========== 6. BERHASIL VERIFIKASI ========== -->
+    <section class="screen" id="screen-success">
+      <div class="center-block">
+        <div class="success-icon">
+          <span class="spark s1"></span>
+          <span class="spark s2"></span>
+          <span class="dot d1"></span>
+          <span class="dot d2"></span>
+          <span class="dot d3"></span>
+          <div class="success-ring">
+            <div class="success-circle">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 34l14 14 24-30" fill="none" stroke="#3a1650" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <h1 class="success-title">Berhasil Verifikasi !</h1>
+        <p class="success-desc">Akun Anda sudah terverifikasi. Selamat menikmati kemudahan memesan menu favorit di Ah Master Wash &amp; Cafe.</p>
+
+        <div class="btn-row">
+          <button class="btn" type="button" id="btn-to-login">Kembali ke Login</button>
+          <button class="btn" type="button" id="btn-order">Mulai Pesan Sekarang</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
